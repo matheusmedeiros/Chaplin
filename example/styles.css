@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+  padding: 0;
+  margin: 0;
+}
+
+.container-illustrations {
+  width: 100%;
+  height: 900px;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.box-steps {
+  width: 100%;
+  height: 900px;
+}
+
+.ilustra {
+  position: fixed;
+  transition: none 0s ease 0s;
+  transform: translate(0, -70px);
+  z-index: -1;
+}
+
+.tower {
+  position: fixed;
+  z-index: -1;
+}
+  
