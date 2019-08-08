@@ -12,6 +12,7 @@ body {
   background-color: #f3f3f3;
   padding: 0;
   margin: 0;
+  zoom: 0.8;
 }
 
 .container-illustrations {
@@ -41,4 +42,3 @@ body {
   position: fixed;
   z-index: -1;
 }
-  
