@@ -4,8 +4,8 @@ class Chaplin {
     this.components = {}
   };
 
-  calcLerpRange(start, finish, length) {
-    return (length - start) / (finish - start);
+  calcFloatPoint(from, to, floatPoint) {
+    return (floatPoint - from) / (to - from);
   };
 
   lerp(v0, v1, t) {
@@ -14,9 +14,9 @@ class Chaplin {
     return (v0 * (1 - t)) + (v1 * t);
   }
 
-  moveElement(startPosition, finishPosition, componentId, range) {
-    let moveValueY = this.lerp(startPosition.y, finishPosition.y, range);
-    let moveValueX = this.lerp(startPosition.x, finishPosition.x, range);
+  moveElement(from, to, componentId, floatPoint) {
+    let moveValueY = this.lerp(from.y, to.y, floatPoint);
+    let moveValueX = this.lerp(from.x, to.x, floatPoint);
 
     this.components[componentId].style.transform = `translate(${moveValueX}px, ${moveValueY}px)`;
   }
@@ -24,19 +24,19 @@ class Chaplin {
   createAnimation(animation) {
     const { componentId, moves } = animation;
 
-    let rangeUsedBy = null;
+    let floatPointBy = null;
 
     moves.forEach((move, index) => {
-      let range = this.calcLerpRange(move.scrollInterval.start, move.scrollInterval.finish, window.scrollY);
+      let floatPoint = this.calcFloatPoint(move.scrollInterval.from, move.scrollInterval.to, window.scrollY);
 
-      if (((rangeUsedBy === null || rangeUsedBy === index) && range < 1) || (moves.length === index + 1 && range > 1)) {
-        rangeUsedBy = index;
+      if (((floatPointBy === null || floatPointBy === index) && floatPoint < 1) || (moves.length === index + 1 && floatPoint > 1)) {
+        floatPointBy = index;
 
         this.moveElement(
-          move.objectPositions.start,
-          move.objectPositions.finish,
+          move.objectPositions.from,
+          move.objectPositions.to,
           componentId,
-          range
+          floatPoint
         );
       }
     });
